@@ -1,23 +1,23 @@
-import logo from './logo.svg';
 import './App.css';
+import {useEffect, useState} from 'react'
+import axios from "axios";
 
 function App() {
+  const [data, setData]= useState([]);
+  let books;
+  useEffect(()=>{
+    fetch('https://api.nytimes.com/svc/books/v3/lists/full-overview.json?api-key=ATMGznzln6NgNyiBjEZkSAunDr2Odh8P')
+          .then(req=> req.json())
+          .then(res=> {
+            // console.log(res.results.lists)
+            setData(res.results.lists)
+          })
+          .catch(err=> console.log(err))
+  },[])
+  console.log(data)
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      Hello
     </div>
   );
 }
