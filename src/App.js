@@ -1,22 +1,13 @@
-import './App.css';
 import {useEffect, useState} from 'react'
 import axios from "axios";
+import ApiCall from './Data/ApiCall';
 
 function App() {
-  const [data, setData]= useState([]);
-  let books;
-  useEffect(()=>{
-    fetch(`https://api.nytimes.com/svc/books/v3/lists/full-overview.json?api-key=${process.env.REACT_APP_BOOKS_API_KEY}`)
-          .then(req=> req.json())
-          .then(res=> {
-            console.log(res)
-          })
-          .catch(err=> console.log(err))
-  },[])
-  // console.log(data)
+  const [data, setData]=useState([])
+  
   return (
     <div className="App">
-      Hello
+      <ApiCall setData={setData}/>
     </div>
   );
 }
